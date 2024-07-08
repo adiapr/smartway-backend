@@ -126,6 +126,7 @@ class WisataController extends Controller
             'url' => route('paket-wisata.schedule.store', $tour->uuid),
             'tour' => $tour,
             'schedules' => TourSchedule::whereTourId($tour->id)->orderBy('order_by', 'asc')->get(),
+            'schedules_number' => TourSchedule::whereTourId($tour->id)->orderBy('order_by', 'desc')->first(),
         ];
         // return $data['schedules'];
         return view('admin.tours.schedule', $data);

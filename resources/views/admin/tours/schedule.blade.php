@@ -65,7 +65,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 {{-- <h4>Latest News</h4> --}}
-                                <ul class="timeline">
+                                <ul class="timeline"> 
                                     @forelse ($schedules as $item)
                                         <li class="{{ $item->time === null ? 'null-time' : '' }}">
                                             <span class="text-primary fw-bold">{{ $item->time }}</span>
@@ -105,7 +105,7 @@
                             name="order_by"
                             label="Nomor urut perjalanan"
                             type="number"
-                            :value="@$item_schedule->order_by"
+                            :value="@$schedules_number->order_by + 1 ?? @$item_schedule->order_by"
                             required
                             placeholder="Nomor urut perjalanan..."
                         />
