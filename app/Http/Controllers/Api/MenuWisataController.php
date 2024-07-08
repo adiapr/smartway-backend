@@ -29,7 +29,7 @@ class MenuWisataController extends Controller
     }
 
     public function all(){
-        $tours = Tour::with(['location','media'])->latest()->get();
+        $tours = Tour::with(['location','media'])->where('publishment', 'published')->latest()->get();
 
         return response()->json($tours);
     }
