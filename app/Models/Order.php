@@ -11,6 +11,7 @@ class Order extends Model
 
     protected $fillable = [
         'kode',
+        'user_id',
         'metode',
         'metadata',
         'voucher_id',
@@ -21,6 +22,15 @@ class Order extends Model
         'success_at',
         'payment_type',
         'product_type',
-        'product_id'
+        'product_id',
+        'snap_token',
+        'card_type',
+        'bank',
+        'va_numbers'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

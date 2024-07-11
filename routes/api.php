@@ -53,7 +53,10 @@ Route::get('/testimony', [SliderController::class, 'testimony']);
 Route::get('/cart/{uuid}', [CheckoutController::class, 'cart']);
 
 // create order 
-Route::post('/create-transaction', [MidtransController::class, 'createOrder']);
+Route::post('/transaction', [MidtransController::class, 'create']);
+
+// midtrans 
+Route::post('/order/midtrans', [MidtransController::class, 'callback']);
 
 // Route::middleware(['cors'])->group(function () {
 //     Route::post('/create-transaction', [MidtransController::class, 'createOrder']);
