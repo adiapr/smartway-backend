@@ -97,6 +97,13 @@
                     </ul>
                 </div>
             </li>
+            <li class="nav-item {{ request()->routeIs('order.*') ? 'active' : '' }}">
+                <a href="{{ route('order.index') }}">
+                    <i class="fas flaticon-cart-1"></i>
+                    <p>Order</p>
+                    {{-- <span class="caret"></span> --}}
+                </a>
+            </li>
         </ul>
     </div>
 </div>

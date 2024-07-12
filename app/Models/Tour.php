@@ -89,4 +89,8 @@ class Tour extends Model implements HasMedia
     public function prices(){
         return $this->hasMany(TourPrice::class)->orderBy('name', 'asc');
     }
+
+    public function order(){
+        return $this->morphOne(Order::class, 'product');
+    }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\RentController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\TestimonyVideoController;
@@ -82,6 +83,9 @@ Route::middleware('auth')->group(function () {
         Route::resource('/slider', SliderController::class); 
         Route::resource('/testimony', TestimonyVideoController::class);
     });
+
+    // Order 
+    Route::resource('/order', OrderController::class);
 });
 
 require __DIR__.'/auth.php';
