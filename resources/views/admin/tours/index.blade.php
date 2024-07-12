@@ -8,7 +8,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-3">
-                        <img src="{{ $item->cover_url }}" alt="" class="aspect-video w-100">
+                        <img src="{{ $item->cover_url }}" alt="" class="aspect-video w-100 rounded">
                     </div>
                     <div class="col-md-9">
                         <h4 class="fw-bold">
