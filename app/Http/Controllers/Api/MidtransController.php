@@ -39,7 +39,7 @@ class MidtransController extends Controller
 
             // Konfigurasi Midtrans
             \Midtrans\Config::$serverKey = config('services.midtrans.serverKey');
-            \Midtrans\Config::$isProduction = false; // Ganti ke true jika ingin menggunakan production environment
+            \Midtrans\Config::$isProduction = config('services.midtrans.isProduction');// Ganti ke true jika ingin menggunakan production environment
             \Midtrans\Config::$isSanitized = true;
             \Midtrans\Config::$is3ds = true;
 
