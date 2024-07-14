@@ -34,27 +34,17 @@
                             <div class="col-md-9">
                                 <div class="form-group mt-3">
                                     <label for="" class="fw-bold">Lokasi</label>    
-                                    <div class="row">
-                                        @php
+                                    {{-- <div class="row"> --}}
+                                        {{-- @php
                                            $locationIds = json_decode(@$item->location_id, true) ?? [];
-                                        @endphp
-                                        @foreach ($location as $data)
-                                            <div class="col-md-3">
-                                                <input 
-                                                    type="checkbox" 
-                                                    name="location_id[]" 
-                                                    value="{{ $data->id }}" 
-                                                    id="{{ $data->id }}"
-                                                    @if (in_array($data->id, $locationIds))
-                                                        checked
-                                                    @endif
-                                                > 
-                                                <label for="{{ $data->id }}"> 
-                                                    {{ $data->location }}
-                                                </label>
-                                            </div>
-                                        @endforeach
-                                    </div>
+                                        @endphp --}}
+                                        <select name="location_id" id="" class="form-control">
+                                            <option value="">- Pilih Lokasi -</option>
+                                            @foreach ($location as $data)
+                                                <option value="{{ $data->id }}" {{ $data->id == @$item->location_id ? 'selected' : '' }}>{{ $data->location }}</option>
+                                            @endforeach
+                                        </select>
+                                    {{-- </div> --}}
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -68,6 +58,28 @@
                                     @enderror
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <x-form.textarea 
+                            name="description"
+                            label="Deskripsi Mobil"
+                            placeholder="Masukkan deskripsi atau keterangan..."
+                            required
+                            editor="4"
+                            :value="@$item->description"
+                        />  
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mt-3">
+                            <label for="" class="fw-bold">Embed Lokasi</label>
+                            <textarea name="map" id="" cols="30" rows="5" required class="form-control mt-2" placeholder="Embed kode map bisa didapatkan dari google map">{{ @$item->map }}</textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mt-3">
+                            <label for="" class="fw-bold">Embed Youtube</label>
+                            <textarea name="youtube" id="" cols="30" rows="5" required class="form-control mt-2" placeholder="Ambil kode embed dari youtube">{{ @$item->youtube }}</textarea>
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -172,4 +184,5 @@
             </form>
         </div>
     </div>
+    @include('plugin.ckeditor5-classic')
 </x-admin-layout>

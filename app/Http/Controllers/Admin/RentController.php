@@ -40,7 +40,7 @@ class RentController extends Controller
     {
         $data = $request->except('_token');
         $data['mileage'] = 1;
-        $data['location_id'] = json_encode($request->location_id);
+        // $data['location_id'] = json_encode($request->location_id);
         // return ;
         $car = Car::create($data);
         if($request->hasFile('cover') && $request->file('cover')->isValid()){
@@ -83,7 +83,7 @@ class RentController extends Controller
     {
         $data = $request->except('_token');
         $data['mileage'] = 1;
-        $data['location_id'] = json_encode($request->location_id);
+        // $data['location_id'] = json_encode($request->location_id);
         // return ;
         $car = Car::findOrFail($id);
         $car->update($data);
