@@ -33,6 +33,9 @@ class Tour extends Model implements HasMedia
         'transportation',
         'free_cancel',
         'map',
+        'review',
+        'link_review',
+        'ketentuan'
     ];
 
     protected static function boot()

@@ -125,16 +125,49 @@
                             @enderror
                         </div>
                     </div>
+
+                    <div class="col-md-6">
+                        <x-form.text 
+                            name="review"
+                            label="Total Review (Tipadvisor + Lainnya)"
+                            :value="@$item->review"
+                            type="number"
+                            required
+                            placeholder="Total orang..."
+                        />
+                    </div>
+                    <div class="col-md-6">
+                        <x-form.text 
+                            name="link_review"
+                            label="Link Review (Tipadvisor/Lainnya)"
+                            :value="@$item->link_review"
+                            type="text"
+                            required
+                            placeholder="Total orang..."
+                        />
+                    </div>
                 </div>
-                <x-form.textarea 
-                    name="description"
-                    label="Deskripsi singkat"
-                    placeholder="Input tours descriptions..."
-                    required
-                    :value="@$item->description"
-                    editor="1"
-                />
                 <div class="row">
+                    <div class="col-md-6">          
+                        <x-form.textarea 
+                            name="description"
+                            label="Deskripsi singkat"
+                            placeholder="Input tours descriptions..."
+                            required
+                            :value="@$item->description"
+                            editor="1"
+                        />
+                    </div>
+                    <div class="col-md-6">          
+                        <x-form.textarea 
+                            name="ketentuan"
+                            label="Syarat dan ketentuan"
+                            placeholder="Input ketentuan tours ..."
+                            required
+                            :value="@$item->ketentuan"
+                            editor="5"
+                        />
+                    </div>
                     <div class="col-md-6">
                         <x-form.textarea 
                             name="destination"
