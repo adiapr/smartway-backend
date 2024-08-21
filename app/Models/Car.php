@@ -32,7 +32,11 @@ class Car extends Model implements HasMedia
         'include_driver',
         'youtube',
         'map',
-        'description'
+        'description',
+        'bensin',
+        'include',
+        'no_include',
+        'ketentuan',
     ];
 
     protected static function boot()
