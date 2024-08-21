@@ -15,7 +15,7 @@ class CarController extends Controller
     }
 
     public function show($slug){
-        $car = Car::where('slug', $slug)->with('media', 'location')->firstOrFail();
+        $car = Car::where('slug', $slug)->with('media', 'location', 'documentations.media')->firstOrFail();
         return $car;
     }
 }

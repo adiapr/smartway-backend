@@ -3,23 +3,22 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Car;
 use App\Models\Documentation;
-use App\Models\Tour;
 use Illuminate\Http\Request;
 
-class WisataDocumentationController extends Controller
+class RentDocumentationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index($uuid)
+    public function index($id)
     {
-        $tour = Tour::whereUuid($uuid)->firstOrFail();
+        $tour = Car::findOrFail($id);
         $data = [
             'tour' => $tour,
-            'documentations' => Documentation::whereDocumentationsType(Tour::class)->whereDocumentationsId($tour->id)->latest()->paginate(15),
-            'store' => route('paket-wisata.documentation.store', $tour->id),
-            // 'delete' => route('paket-wisata.documentation.destroy'),
+            'documentations' => Documentation::whereDocumentationsType(Car::class)->whereDocumentationsId($tour->id)->latest()->paginate(15),
+            'store' => route('rent.documentation.store', $tour->id),
         ];
 
         return view('admin.tours.documentation', $data);
@@ -39,7 +38,7 @@ class WisataDocumentationController extends Controller
     public function store(Request $request, $id)
     {
         $documentation = Documentation::create([
-            'documentations_type' => Tour::class,
+            'documentations_type' => Car::class,
             'documentations_id' => $id,
         ]);
 
@@ -81,20 +80,6 @@ class WisataDocumentationController extends Controller
      */
     public function destroy(string $id)
     {
-        $data = Documentation::findOrFail($id);
-        $data->delete();
-        $data->media()->delete();
-
-        if ($data) {
-            return response()->json([
-                "status" => "success",
-                "message" => "Data Berhasil Dihapus !"
-            ]);
-        } else {
-            return response()->json([
-                "status" => "error",
-                "message" => "Data Gagal Dihapus !"
-            ]);
-        }
+        //
     }
 }

@@ -60,6 +60,7 @@
                                         data-id="{{ $item->id }}">
                                         <i class="fas fa-trash-alt"></i> Hapus
                                     </button>
+                                    <a href="{{ route('rent.documentation.index', $item->id) }}" class="btn btn-warning btn-sm"><i class="far fa-images"></i> Foto Mobil</a>
                                 </td>
                             </tr>
                         @empty

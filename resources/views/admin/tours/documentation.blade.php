@@ -15,16 +15,16 @@
     <div class="card">
         <div class="card-header">
             <h1 class="card-title float-left">
-                Dokumentasi wisata
+                List Foto
             </h1>
-            <button class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#exampleModal">Tambah Dokumentasi</button>
+            <button class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#exampleModal">Tambah Foto</button>
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="{{ route('paket-wisata.documentation.store', $tour->id) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ $store }}" method="post" enctype="multipart/form-data">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5 text-black card-title" id="exampleModalLabel">Tambah Dokumentasi</h1>
+                            <h1 class="modal-title fs-5 text-black card-title" id="exampleModalLabel">Tambah Foto</h1>
                             
                             <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                         </div>
@@ -65,7 +65,7 @@
                     </div>
                 @empty
                     <div class="col-12 fw-bold text-center">
-                        - Dokumentasi belum ada -
+                        - Foto belum ada -
                     </div>
                 @endforelse
             </div>

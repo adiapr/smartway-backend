@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\RentController;
+use App\Http\Controllers\Admin\RentDocumentationController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\TestimonyVideoController;
 use App\Http\Controllers\Admin\WisataController;
@@ -71,6 +72,8 @@ Route::middleware('auth')->group(function () {
 
     // rent car 
     Route::resource('/rent-car', RentController::class);
+    Route::get('/rent-car-documentation/{id}', [RentDocumentationController::class, 'index'])->name('rent.documentation.index');
+    Route::post('/rent-car-documentation/{id}', [RentDocumentationController::class, 'store'])->name('rent.documentation.store');
 
     // article
     Route::resource('/article', ArticleController::class);
