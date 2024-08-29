@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Api\ArticleController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CarController;
@@ -61,3 +62,6 @@ Route::post('/order/midtrans', [MidtransController::class, 'callback']);
 // Route::middleware(['cors'])->group(function () {
 //     Route::post('/create-transaction', [MidtransController::class, 'createOrder']);
 // });
+
+// FAQ 
+Route::get('/faq-doc', [FaqController::class, 'api']);

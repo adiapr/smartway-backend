@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\RentController;
 use App\Http\Controllers\Admin\RentDocumentationController;
@@ -89,6 +90,9 @@ Route::middleware('auth')->group(function () {
 
     // Order 
     Route::resource('/order', OrderController::class);
+
+    // FAQ 
+    Route::resource('/faq', FaqController::class);
 });
 
 require __DIR__.'/auth.php';

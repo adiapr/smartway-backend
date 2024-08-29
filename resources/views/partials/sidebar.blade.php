@@ -97,6 +97,13 @@
                     </ul>
                 </div>
             </li>
+            <li class="nav-item {{ request()->routeIs('faq.*') ? 'active' : '' }}">
+                <a href="{{ route('faq.index') }}">
+                    <i class="fas flaticon-chat-8"></i>
+                    <p>FAQ</p>
+                    {{-- <span class="caret"></span> --}}
+                </a>
+            </li>
             <li class="nav-item {{ request()->routeIs('order.*') ? 'active' : '' }}">
                 <a href="{{ route('order.index') }}">
                     <i class="fas flaticon-cart-1"></i>
