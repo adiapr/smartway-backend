@@ -75,7 +75,7 @@
                 <div class="card-body">
                     <div class="row">
                         @forelse ($result as $item)
-                            <div class="col-md-4">
+                            <div class="col-md-4 my-2">
                                 <div style="position: relative; display: inline-block;">
                                     <img src="{{ $item->getFirstMediaUrl('cover', 'thumb') }}" class="ratio" alt="">
                                     <div style="
