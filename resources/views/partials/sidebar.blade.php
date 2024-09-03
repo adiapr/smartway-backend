@@ -76,6 +76,27 @@
                     </ul>
                 </div>
             </li>
+            <li class="nav-item {{ request()->routeIs('documentation.*') ? 'active' : '' }}">
+                <a data-toggle="collapse" href="#documentation">
+                    <i class="fas fa-camera-retro"></i>
+                    <p>Documentation Serv</p>
+                    <span class="caret"></span>
+                </a>
+                <div class="collapse {{ request()->routeIs('documentation.*') ? 'show' : '' }}" id="documentation">
+                    <ul class="nav nav-collapse">
+                        <li class="{{ request()->routeIs('documentation.create') ? 'active' : '' }}">
+                            <a href="{{ route('documentation.create') }}">
+                                <span class="sub-item">Create Service</span>
+                            </a>
+                        </li>
+                        <li class="{{ request()->routeIs('documentation.index') ? 'active' : '' }}">
+                            <a href="{{ route('documentation.index') }}">
+                                <span class="sub-item">List Service</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
             <li class="nav-item {{ request()->routeIs('content.*') ? 'active' : '' }}">
                 <a data-toggle="collapse" href="#Content">
                     <i class="fas flaticon-imac"></i>

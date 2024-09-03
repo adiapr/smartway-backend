@@ -11,6 +11,7 @@
     name="cover"
     class="dropify"
     data-max-file-size="1M"
+    required
     style="border: dahed 2px gray"
     data-default-file="{{ $method == 'put' ? $data->cover_url : asset('img/thumbnail/default.jpg') }}">
 @error('cover')

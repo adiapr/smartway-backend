@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\ArticleController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CarController;
 use App\Http\Controllers\Api\CheckoutController;
+use App\Http\Controllers\Api\DocumentationServiceController;
 use App\Http\Controllers\Api\LocationController;
 use App\Http\Controllers\Api\MenuWisataController;
 use App\Http\Controllers\Api\MidtransController;
@@ -65,3 +66,7 @@ Route::post('/order/midtrans', [MidtransController::class, 'callback']);
 
 // FAQ 
 Route::get('/faq-doc', [FaqController::class, 'api']);
+
+// Layanan dokumentasi 
+Route::get('/layanan-dokumentasi', [DocumentationServiceController::class, 'index']);
+Route::get('/layanan-dokumentasi/{slug}', [DocumentationServiceController::class, 'show']);

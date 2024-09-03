@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DocumentationService;
+use App\Http\Controllers\Admin\DocumentationSliderController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\RentController;
@@ -16,6 +18,7 @@ use App\Http\Controllers\CKEditorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PubllishController;
 use App\Http\Controllers\UploadFileCkeditorController;
+use App\Models\Documentation;
 use App\Models\TestimonyVideo;
 use Illuminate\Support\Facades\Route;
 
@@ -93,6 +96,14 @@ Route::middleware('auth')->group(function () {
 
     // FAQ 
     Route::resource('/faq', FaqController::class);
+
+    // Documentation  service
+    Route::resource('/documentation', DocumentationService::class);
+    Route::get('/documentation-slider/{documentation_id}',  [DocumentationSliderController::class, 'index'])->name('documentation.slider.index');
+    Route::post('/documentation-slider/{documentation_id}',  [DocumentationSliderController::class, 'store'])->name('documentation.slider.store');
+    Route::get('/documentation-result/{documentation_id}',  [DocumentationSliderController::class, 'result'])->name('documentation.result.index');
+    Route::post('/documentation-result/{documentation_id}',  [DocumentationSliderController::class, 'store_result'])->name('documentation.result.store');
+    Route::post('/documentation-header/{documentation_id}',  [DocumentationSliderController::class, 'store_header'])->name('documentation.header.store');
 });
 
 require __DIR__.'/auth.php';

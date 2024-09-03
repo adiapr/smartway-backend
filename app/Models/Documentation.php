@@ -15,6 +15,9 @@ class Documentation extends Model implements HasMedia
     protected $fillable = [
         'documentations_type',
         'documentations_id',
+        'description',
+        'keterangan',
+        'video'
     ];
 
         public function registerMediaConversions(Media $media = null): void
