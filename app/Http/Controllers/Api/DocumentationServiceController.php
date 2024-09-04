@@ -18,7 +18,7 @@ class DocumentationServiceController extends Controller
     public function show($slug)
     {
         $documentation = DocumentationService::where('slug', $slug)
-        ->with('documentations')
+        ->with('documentations.media')
         ->latest()
         ->firstOrFail();
 
@@ -39,8 +39,8 @@ class DocumentationServiceController extends Controller
             'name' => $documentation->name,
             'slug' => $documentation->slug,
             'description' => $documentation->description,
-            'start_price' => $documentation->start_price,
-            'price' => $documentation->price,
+            'start_price' => "Rp." . number_format($documentation->start_price, 0, ',', '.') . ",-",
+            'price' => "Rp." . number_format($documentation->price, 0, ',', '.') . ",-",
             'q1' => $documentation->q1,
             'q2' => $documentation->q2,
             'q3' => $documentation->q3,
