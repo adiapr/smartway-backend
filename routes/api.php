@@ -70,3 +70,4 @@ Route::get('/faq-doc', [FaqController::class, 'api']);
 // Layanan dokumentasi 
 Route::get('/layanan-dokumentasi', [DocumentationServiceController::class, 'index']);
 Route::get('/layanan-dokumentasi/{slug}', [DocumentationServiceController::class, 'show']);
+Route::get('/harga-dokumentasi/{id}', [DocumentationServiceController::class, 'price']);

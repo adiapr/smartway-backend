@@ -104,6 +104,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/documentation-result/{documentation_id}',  [DocumentationSliderController::class, 'result'])->name('documentation.result.index');
     Route::post('/documentation-result/{documentation_id}',  [DocumentationSliderController::class, 'store_result'])->name('documentation.result.store');
     Route::post('/documentation-header/{documentation_id}',  [DocumentationSliderController::class, 'store_header'])->name('documentation.header.store');
+    Route::get('/documentation-price/{documentation_id}',  [DocumentationSliderController::class, 'price'])->name('documentation.price.index');
+    Route::post('/documentation-price/{documentation_id}',  [DocumentationSliderController::class, 'update_or_create_price'])->name('documentation.price.store');
+    Route::delete('/documentation-price/{documentation_id}',  [DocumentationSliderController::class, 'delete_price'])->name('documentation.price.delete');
+
 });
 
 require __DIR__.'/auth.php';

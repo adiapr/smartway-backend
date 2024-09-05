@@ -3,7 +3,7 @@
     label="Nama paket"
     :value="@$item->name"
     required
-    placeholder="mis. Open trip WNI, Private WNI 1 pax"
+    placeholder="Masukkan Nama paket harga"
 />
 <x-form.text 
     name="start_price"

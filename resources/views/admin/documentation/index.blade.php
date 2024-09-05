@@ -30,6 +30,7 @@
                         </button>
                         <a href="{{ route('documentation.slider.index', $item->id) }}" class="btn btn-success btn-sm"><i class="far fa-clock"></i> Slider</a>
                         <a href="{{ route('documentation.result.index', $item->id) }}" class="btn btn-warning btn-sm"><i class="far fa-images"></i> Dokumentasi</a>
+                        <a href="{{ route('documentation.price.index', $item->id) }}" class="btn btn-secondary btn-sm"><i class="fas fa-money-check-alt"></i> Harga</a>
                     </div>
                 </div>
             </div>

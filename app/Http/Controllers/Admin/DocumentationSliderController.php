@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\DcumentationPrice;
 use App\Models\Documentation;
 use App\Models\DocumentationService;
 use Illuminate\Http\Request;
@@ -85,5 +86,51 @@ class DocumentationSliderController extends Controller
 
         toastr()->success('Data berhasil ditambahkan');
         return back();
+    }
+
+    public function price($documentation_id)
+    {
+        $documentation = DocumentationService::findOrFail($documentation_id);
+        $data = [
+            'documentation' => $documentation,
+            'prices' => DcumentationPrice::whereDocumentationServiceId($documentation_id)->get(),
+        ];
+
+        return view('admin.documentation.price', $data);
+    }
+
+    public function update_or_create_price(Request $request, $documentation_id)
+    {
+        $attr = $request->except('_token');
+        
+        // return $attr;
+        
+        if(@$request->id){
+            DcumentationPrice::findOrFail($request->id)->update($attr);
+        } else {
+            $attr['documentation_service_id'] = $documentation_id;
+            DcumentationPrice::create($attr);
+        }
+
+        toastr()->success('Data berhasil ditambahkan');
+        return back();
+    }
+
+    public function delete_price(string $id)
+    {
+        $data = DcumentationPrice::findOrFail($id);
+        $data->delete();
+
+        if ($data) {
+            return response()->json([
+                "status" => "success",
+                "message" => "Data Berhasil Dihapus !"
+            ]);
+        } else {
+            return response()->json([
+                "status" => "error",
+                "message" => "Data Gagal Dihapus !"
+            ]);
+        }
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\DcumentationPrice;
 use App\Models\DocumentationService;
 use Illuminate\Http\Request;
 
@@ -57,5 +58,10 @@ class DocumentationServiceController extends Controller
         ];
         
         return $formattedDocumentation;
+    }
+
+    public function price($id)
+    {
+        return DcumentationPrice::whereDocumentationServiceId($id)->get();
     }
 }
