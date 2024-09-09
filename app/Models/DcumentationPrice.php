@@ -29,4 +29,9 @@ class DcumentationPrice extends Model
             $model->uuid = (string) Str::uuid();
         });
     }
+
+    public function documentation()
+    {
+        return $this->belongsTo(DocumentationService::class, 'documentation_service_id', 'id');
+    }
 }

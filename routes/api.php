@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\ArticleController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CarController;
 use App\Http\Controllers\Api\CheckoutController;
+use App\Http\Controllers\Api\CheckoutDocumentationController;
 use App\Http\Controllers\Api\DocumentationServiceController;
 use App\Http\Controllers\Api\LocationController;
 use App\Http\Controllers\Api\MenuWisataController;
@@ -71,3 +72,8 @@ Route::get('/faq-doc', [FaqController::class, 'api']);
 Route::get('/layanan-dokumentasi', [DocumentationServiceController::class, 'index']);
 Route::get('/layanan-dokumentasi/{slug}', [DocumentationServiceController::class, 'show']);
 Route::get('/harga-dokumentasi/{id}', [DocumentationServiceController::class, 'price']);
+
+// checkout documentation 
+Route::post('/checkout-documentation', [CheckoutDocumentationController::class, 'store']);
+Route::get('/order-documentation', [CheckoutDocumentationController::class, 'index']);
+Route::post('/order-documentation-checkout', [CheckoutDocumentationController::class, 'checkout']);

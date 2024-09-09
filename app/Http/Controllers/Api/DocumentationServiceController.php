@@ -62,6 +62,6 @@ class DocumentationServiceController extends Controller
 
     public function price($id)
     {
-        return DcumentationPrice::whereDocumentationServiceId($id)->get();
+        return DcumentationPrice::with('documentation')->whereDocumentationServiceId($id)->get();
     }
 }
