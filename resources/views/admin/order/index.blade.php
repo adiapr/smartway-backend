@@ -50,7 +50,7 @@
                             </td>
                             <td>
                                 <div style="width: 200px;">
-                                    {{ $order->user->name }}
+                                    {{ @$order->user->name }}
                                 </div>
                             </td>
                             <td>
@@ -59,7 +59,7 @@
                                 </div>
                             </td>
                             <td>
-                                @if ($order->user->phone)
+                                @if (@$order->user->phone)
                                 <a href="https://api.whatsapp.com/send?phone={{ $order->user->phone }}"
                                     target="_blank">{{ $order->user->phone }}</a>  
                                 @else
