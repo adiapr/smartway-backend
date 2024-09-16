@@ -54,9 +54,15 @@ Route::get('/testimony', [SliderController::class, 'testimony']);
 
 // Cart 
 Route::get('/cart/{uuid}', [CheckoutController::class, 'cart']);
+Route::get('/cart-car/{uuid}', [CheckoutController::class, 'cartCar']);
 
 // create order 
 Route::post('/transaction', [MidtransController::class, 'create']);
+Route::post('/transaction-tour', [MidtransController::class, 'tour']);
+
+// cek ketersediaan tour 
+Route::post('/check-availability', [CheckoutController::class, 'checkAvailability']);
+
 
 // midtrans 
 Route::post('/order/midtrans', [MidtransController::class, 'callback']);

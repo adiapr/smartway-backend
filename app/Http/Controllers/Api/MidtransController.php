@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\OrderTour;
 // use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Midtrans\Config;
 use Midtrans\Snap;
@@ -68,6 +70,95 @@ class MidtransController extends Controller
             return response()->json(['error' => 'Failed to create transaction', 'message' => $e->getMessage()], 500);
         }
     }
+
+    public function tour(Request $request)
+    {
+        // Debugging: Lihat semua data yang diterima
+        // dd($request->all());
+
+        $order = new Order();
+        $order->kode = strtoupper(Str::random(8));
+        if (Order::where('kode', $order->kode)->exists()) {
+            $order->kode = strtoupper(Str::random(8)); // Coba lagi jika kode sudah ada
+        }
+        $order->status = 'waiting'; // Status awal pesanan
+        $order->diskon = $request->input('harga_jual') - $request->input('total');
+
+        // Input data 
+        $order->user_id = $request->input('user_id');
+        $order->metode = $request->input('metode');
+        $order->harga_jual = $request->input('harga_jual');
+        $order->total = $request->input('total');
+        $order->product_type = $request->input('product_type');
+        $order->product_id = $request->input('product_id');
+        
+        // Simpan pesanan ke dalam database
+        try {
+            DB::transaction(function () use ($order, $request) {
+                $order->save();
+
+                $orderTourData = $request->input('order_tour_data'); 
+
+                if (!is_array($orderTourData) || empty($orderTourData)) {
+                    throw new \Exception('OrderTour data is not valid.');
+                }
+
+                // Loop untuk menyimpan beberapa entri jika ada beberapa peserta
+                foreach ($orderTourData as $tourData) {
+                    // Cek apakah semua data diperlukan tersedia
+                    if (isset($tourData['jml_peserta'], $tourData['keberangkatan'], $tourData['name'], $tourData['pasport'], $tourData['birthday'], $tourData['phone'], $tourData['instagram'], $tourData['tiktok'], $tourData['email'])) {
+                        $orderTour = new OrderTour();
+                        $orderTour->order_id = $order->id;  // Mengaitkan dengan ID pesanan utama
+                        $orderTour->tour_id = $request->input('product_id');
+                        $orderTour->jml_peserta = $tourData['jml_peserta'];
+                        $orderTour->status = 0;  // Default status
+                        $orderTour->keberangkatan = $tourData['keberangkatan'];
+                        $orderTour->name = $tourData['name'];
+                        $orderTour->pasport = $tourData['pasport'];
+                        $orderTour->birthday = $tourData['birthday'];
+                        $orderTour->phone = $tourData['phone'];
+                        $orderTour->instagram = $tourData['instagram'];
+                        $orderTour->tiktok = $tourData['tiktok'];
+                        $orderTour->email = $tourData['email'];
+                        $orderTour->save();
+                    } else {
+                        throw new \Exception('Invalid OrderTour data provided.');
+                    }
+                }
+            });
+
+            // Konfigurasi Midtrans
+            \Midtrans\Config::$serverKey = config('services.midtrans.serverKey');
+            \Midtrans\Config::$isProduction = config('services.midtrans.isProduction');// Ganti ke true jika ingin menggunakan production environment
+            \Midtrans\Config::$isSanitized = true;
+            \Midtrans\Config::$is3ds = true;
+
+            // Konfigurasi detail transaksi untuk Midtrans
+            $params = [
+                'transaction_details' => [
+                    'order_id' => $order->kode, // Menggunakan ID pesanan sebagai order_id di Midtrans
+                    'gross_amount' => $order->total,
+                ],
+                'customer_details' => [
+                    'first_name' => $order->user->name,
+                    'email' => $order->user->email,
+                    'phone' => $order->user->phone,
+                ],
+            ];
+
+            // Mendapatkan Snap Token dari Midtrans
+            $snapToken = \Midtrans\Snap::getSnapToken($params);
+
+            // Simpan snap token ke dalam pesanan
+            $order->snap_token = $snapToken;
+            $order->save();
+
+            return response()->json(['token' => $snapToken]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to create transaction', 'message' => $e->getMessage()], 500);
+        }
+    }
+
 
     public function callback(Request $request)
     {
