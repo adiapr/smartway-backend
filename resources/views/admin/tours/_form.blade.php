@@ -129,7 +129,7 @@
                     <div class="col-md-6">
                         <x-form.text 
                             name="review"
-                            label="Total Review (Tipadvisor + Lainnya)"
+                            label="Total Review (Tripadvisor + Lainnya)"
                             :value="@$item->review"
                             type="number"
                             required
@@ -139,7 +139,7 @@
                     <div class="col-md-6">
                         <x-form.text 
                             name="link_review"
-                            label="Link Review (Tipadvisor/Lainnya)"
+                            label="Link Review (Tripadvisor/Lainnya)"
                             :value="@$item->link_review"
                             type="text"
                             required
