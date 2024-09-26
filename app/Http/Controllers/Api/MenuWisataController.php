@@ -35,8 +35,10 @@ class MenuWisataController extends Controller
     }
 
     public function show($slug){
-        $tour = Tour::with(['location', 'media', 'documentations.media', 'tour_schedules', 'prices'])->whereSlug($slug)->firstOrFail();
-
+        $tour = Tour::with(['location', 'media', 'documentations.media', 'tour_schedules', 'prices' => function ($query){
+            $query->orderBy('urutan', 'asc');
+        }])->whereSlug($slug)->firstOrFail();
+        
         return response()->json($tour);
     }
 }
