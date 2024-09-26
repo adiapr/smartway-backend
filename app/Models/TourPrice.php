@@ -14,7 +14,9 @@ class TourPrice extends Model
         'tour_id',
         'name',
         'start_price',
-        'price'
+        'price',
+        'urutan',
+        'pax',
     ];
 
     protected static function boot()

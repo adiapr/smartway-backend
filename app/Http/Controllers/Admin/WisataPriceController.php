@@ -17,7 +17,8 @@ class WisataPriceController extends Controller
         $tour = Tour::whereUuid($uuid)->firstOrFail();
         $data = [
             'tour' => $tour,
-            'prices' => TourPrice::whereTourId($tour->id)->latest()->get(),
+            'prices' => TourPrice::whereTourId($tour->id)->orderBy('urutan', 'asc')->get(),
+            'urutan' => TourPrice::whereTourId($tour->id)->max('urutan') + 1,
         ];
         // return $data['prices'];
         return view('admin.tours.price', $data);

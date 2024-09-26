@@ -42,8 +42,9 @@
                 <table id="add-row" class="display table table-striped table-hover" >
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th>Urutan</th>
                             <th>Nama Paket</th>
+                            <th>Jumlah PAX</th>
                             <th>Harga Coret</th>
                             <th>Harga Asli</th>
                             <th style="width: 10%">Action</th>
@@ -52,8 +53,9 @@
                     <tbody>
                         @forelse ($prices as $item)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $item->urutan }}</td>
                             <td>{{ $item->name }}</td>
+                            <td>{{ $item->pax }}</td>
                             <td>
                                 <s>Rp.{{ number_format($item->start_price,0,',','.') }}</s>
                             </td>
