@@ -49,6 +49,11 @@
                 height: 35px;
                 z-index: 400;
             }
+            .timeline img{
+                width: 200px;
+                border-radius: 8px;
+                display: block;
+            }
         </style>
     @endpush
 
@@ -121,7 +126,7 @@
                             label="Deskripsi"
                             placeholder="Bisa diisi keterangan tempat..."
                             {{-- required --}}
-                            editor="2"
+                            editor="1"
                             :value="@$item_schedule->description"
                         />
                         <button class="btn btn-primary btn-sm w-100 mt-4">{{ $method == 'put' ? 'Update' : 'Tambah' }} Jadwal</button>
@@ -130,6 +135,7 @@
             </div>
         </div>
     </div>
-    @include('plugin.ckeditor5-classic')
+    {{-- @include('plugin.ckeditor5-classic')  --}}
+    @include('plugin.ckeditorartikel')
     @include('button.delete')
 </x-admin-layout>
