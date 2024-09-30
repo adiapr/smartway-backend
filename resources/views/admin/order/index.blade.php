@@ -55,7 +55,7 @@
                             </td>
                             <td>
                                 <div style="width: 300px;">
-                                        {{ @$order->tour->name }}
+                                        {{ @$order->tour->name }} 
                                 </div>
                             </td>
                             <td>
