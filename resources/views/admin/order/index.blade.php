@@ -54,7 +54,7 @@
                                 </div>
                             </td>
                             <td>
-                                <div class="scrollable-name">
+                                <div style="width: 300px;">
                                         {{ @$order->tour->name }}
                                 </div>
                             </td>
