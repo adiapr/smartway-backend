@@ -54,7 +54,7 @@
                                 </div>
                                 <!-- Button trigger modal -->
                                 <a href="!#" class="fw-bold" data-toggle="modal" data-target="#order{{ $order->id }}">
-                                    Detail Pesanan <i class="fa fa-arrow-right"></i>
+                                    Detail Pemesan <i class="fa fa-arrow-right"></i>
                                 </a>
                                 
                                 <!-- Modal -->
