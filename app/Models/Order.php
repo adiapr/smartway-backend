@@ -62,4 +62,8 @@ class Order extends Model
     public function tour(){
         return $this->hasOne(Tour::class, 'id', 'product_id');
     }
+
+    public function detail(){
+        return $this->hasOne(OrderTour::class, 'order_id', 'id');
+    }
 }
