@@ -48,6 +48,10 @@
             </div>
         </div>
     @endforeach
+
+    <div>
+        {{ $tours->links() }}
+    </div>
     @push('scripts')
         @include('button.publish')
         @include('button.delete')

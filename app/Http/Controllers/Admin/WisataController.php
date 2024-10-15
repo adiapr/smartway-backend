@@ -7,6 +7,7 @@ use App\Models\Location;
 use App\Models\Tour;
 use App\Models\TourSchedule;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
 
 class WisataController extends Controller
@@ -16,6 +17,7 @@ class WisataController extends Controller
      */
     public function index()
     {
+        Paginator::useBootstrapFive();
         $data = [
             'tours' => Tour::with('location')->latest()->paginate(20),
         ];
